@@ -4,6 +4,7 @@ var tsc = require("gulp-typescript");
 var sourcemaps  = require('gulp-sourcemaps');
 var browserSync = require('browser-sync').create();
 var reload      = browserSync.reload;
+var sass = require('gulp-sass');
 var tsProject = tsc.createProject("tsconfig.json");
 
 /**
@@ -29,7 +30,7 @@ gulp.task("compile", () => {
  * Copy all resources that are not TypeScript files into build directory.
  */
 gulp.task("resources", () => {
-    return gulp.src(["src/**/*", "!**/*.ts"])
+    return gulp.src(["src/**/*", "!**/*.ts", "!src/scss/*"])
         .pipe(gulp.dest("build"))
 });
 
@@ -60,17 +61,27 @@ gulp.task('browserSync', function() {
   })
 });
 
+gulp.task('sass', function(){
+  return gulp.src('src/scss/**/*.scss')
+    .pipe(sass())
+    .pipe(gulp.dest('build/css'))
+    .pipe(browserSync.reload({
+      stream: true
+    }))
+})
+
 /**
  * Watch for any changes to files in src folder
 */
 gulp.task('watch', function() {
-  gulp.watch(['src/**/*.*'], ['compile', 'resources', reload]);
+  gulp.watch(['src/**/*.*', "!src/scss/*"], ['compile', 'resources', reload]);
+  gulp.watch(['src/scss/**/*.*'], ['sass', reload]);
 });
 
 /**
  * Build the project.
  */
-gulp.task("build", ['compile', 'resources', 'libs'], () => {
+gulp.task("build", ['compile', 'resources', 'libs', 'sass'], () => {
     console.log("Building the project ...")
 });
 

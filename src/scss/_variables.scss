@@ -1,0 +1,30 @@
+// Load Fonts
+
+@import url(http://fonts.googleapis.com/css?family=Roboto+Slab|Merriweather|Josefin+Slab|Oswald|Bree+Serif);
+
+$white:       #FFFFFF;
+$black:       #000000;
+$offwhite:    #EEE8D6;
+$darkblue:    #022933;
+$yellow:      #FFBA00;
+$blue:        #0076A3;
+$green:       #548C27;
+$orange:      #F39856;
+$red:         #D14348;
+$purple:      #6D73C2;
+
+
+$color-main: #F7941E;
+$color-comp: #1EB3F7;
+$color-backgrounds: $black;
+$color-headlines: $red;
+
+
+$font-main: 'Oswald', sans-serif;
+$font-highlight: 'Oswald', sans-serif;
+
+//breakpoints
+
+$small:		450px;
+$medium:	760px;
+$large:		1200px;
