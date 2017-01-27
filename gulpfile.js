@@ -30,7 +30,7 @@ gulp.task("compile", () => {
  * Copy all resources that are not TypeScript files into build directory.
  */
 gulp.task("resources", () => {
-    return gulp.src(["src/**/*", "!**/*.ts", "!src/scss/*"])
+    return gulp.src(["src/**/*", "!**/*.ts", "!src/{scss,scss/**}"])
         .pipe(gulp.dest("build"))
 });
 
